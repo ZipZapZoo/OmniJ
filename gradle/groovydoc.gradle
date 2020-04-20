@@ -3,7 +3,7 @@ apply plugin: 'groovy'
 def groovydocSpec = {
     use = true
     if (project != rootProject) source = project.sourceSets.main.groovy + project.sourceSets.main.java
-    groovyClasspath = project.configurations.jansi
+    //groovyClasspath = project.configurations.jansi
 
     overviewText = project.resources.text.fromFile(rootProject.file('src/main/java/overview.html'))
     includePrivate = false
@@ -17,18 +17,18 @@ def groovydocSpec = {
 allprojects {
     apply plugin: 'groovy'
 
-    configurations {
-        // jansi configuration is a workaround for a broken transitive dependency
-        // See: http://forums.gradle.org/gradle/topics/gradle_task_groovydoc_failing_with_noclassdeffounderror
-        jansi.extendsFrom(runtime)
-    }
-
-    dependencies {
-        jansi 'org.fusesource.jansi:jansi:1.16'         // Transitive dependency of GroovyDoc
-        jansi "org.codehaus.groovy:groovy-ant:${groovyVersion}"    // used in Groovy doc
-        jansi "org.codehaus.groovy:groovy-templates:${groovyVersion}"    // used in Groovy doc 
-        jansi "org.codehaus.groovy:groovy-dateutil:${groovyVersion}"    // used in Groovy doc
-    }
+//    configurations {
+//        // jansi configuration is a workaround for a broken transitive dependency
+//        // See: http://forums.gradle.org/gradle/topics/gradle_task_groovydoc_failing_with_noclassdeffounderror
+//        jansi.extendsFrom(runtime)
+//    }
+//
+//    dependencies {
+//        jansi 'org.fusesource.jansi:jansi:1.16'         // Transitive dependency of GroovyDoc
+//        jansi "org.codehaus.groovy:groovy-ant:${groovyVersion}"    // used in Groovy doc
+//        jansi "org.codehaus.groovy:groovy-templates:${groovyVersion}"    // used in Groovy doc
+//        jansi "org.codehaus.groovy:groovy-dateutil:${groovyVersion}"    // used in Groovy doc
+//    }
 
     groovydoc groovydocSpec
 }
